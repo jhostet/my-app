@@ -21,7 +21,7 @@ pipeline {
           jf "mvnc --server-id-deploy jfrog-cloud --server-id-resolve jfrog-cloud --repo-deploy-snapshots maven-snapshot-local --repo-deploy-releases maven-release-local --repo-resolve-snapshots maven-snapshot-local --repo-resolve-releases maven-release-local"
           jf "mvn clean package"
           jf "mvn -B release:prepare -Dresume=false -DpushChanges=false"
-          jf 'mvn release:perform -Dgoals="install" -Darguments="-DskipTests"'
+          jf 'mvn release:perform -Dgoals="install" -DlocalCheckout=true'
         }
       }
     }
