@@ -22,6 +22,7 @@ pipeline {
           jf "mvn clean package"
           jf "mvn -B release:prepare -Dresume=false -DpushChanges=false"
           jf 'mvn release:perform -Dgoals="install" -DlocalCheckout=true'
+          jf 'mvn install'
         }
       }
     }
