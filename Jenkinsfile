@@ -18,7 +18,7 @@ pipeline {
       steps {
         sh 'git tag | xargs git tag -d'
         withMaven(jdk: 'openjdk-21', maven: 'default', mavenSettingsConfig: 'jfrog-maven-settings', traceability: true) {
-          jf "mvnc --server-id-deploy jfrog-cloud --server-id-resolve jfrog-cloud --repo-deploy-snapshots maven-snapshot-local --repo-deploy-releases maven-release-local --repo-resolve-snapshots maven-snapshot-local --repo-resolve-releases maven-release-local"
+          jf "mvnc --server-id-deploy jfrog-cloud --server-id-resolve jfrog-cloud --repo-deploy-snapshots maven-snapshot --repo-deploy-releases maven-release --repo-resolve-snapshots maven-snapshot --repo-resolve-releases maven-release"
           jf "mvn clean package"
           jf "mvn -B release:prepare -Dresume=false -DpushChanges=false"
           jf 'mvn release:perform -Dgoals="install" -DlocalCheckout=true'
